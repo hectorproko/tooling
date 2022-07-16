@@ -1,0 +1,24 @@
+version: "2.2"
+services:
+  tooling_frontend:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - "8085:80"
+    volumes:
+      - tooling_frontend:/var/www/html
+  db:
+    image: mysql-server:tooling
+    restart: always
+    environment:
+      MYSQL_DATABASE: "toolingdb"
+      MYSQL_USER: "hector"
+      MYSQL_PASSWORD: "password"
+      MYSQL_RANDOM_ROOT_PASSWORD: "Passw0rd!"
+    #volumes:
+      #- db:/var/lib/mysql
+volumes:
+  tooling_frontend:  
+  #db:
+
